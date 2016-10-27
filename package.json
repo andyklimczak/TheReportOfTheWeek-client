@@ -67,7 +67,8 @@
     "react-router": "^2.8.0",
     "react-router-redux": "^4.0.5",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "victory": "^0.13.1"
   },
   "scripts": {
     "start": "node scripts/start.js",

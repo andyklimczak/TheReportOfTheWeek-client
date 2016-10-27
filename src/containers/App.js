@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
+import { VictoryPie } from 'victory';
 
 import '../assets/css/App.css';
 
@@ -22,6 +23,15 @@ class App extends Component {
         <div className="App-body">
           {this.props.children}
         </div>
+        <VictoryPie
+          labelRadius={80}
+          data={[
+          {x: 'a', y: 4},
+          {x: 'b', y: 2},
+          {x: 'c', y: 9},
+          {x: 'd', y: 8},
+          {x: 'e', y: 3},
+        ]} />
       </div>
     );
   }
