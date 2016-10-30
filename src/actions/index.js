@@ -1,6 +1,5 @@
 import * as types from './ActionTypes';
 
-
 export function addItem(item) {
   return dispatch => {
     dispatch(addFlashMessage(`Successfully added "${item}"!`, 'notification'));
@@ -31,5 +30,18 @@ export function deleteFlashMessage(timestamp) {
 }
 
 export function getReports() {
-  return { type: types.REPORTS__GET };
+  return dispatch => {
+    setTimeout(() => {
+      fetch('https://thereportoftheweek-api.herokuapp.com/reports')
+      .then(res => {
+        return res.json();
+      }).then(json => {
+        dispatch(setReports(json));
+      });
+    }, 5000);
+  };
+}
+
+export function setReports(reports) {
+  return { type: types.REPORTS__GET, reports };
 }

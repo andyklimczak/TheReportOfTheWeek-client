@@ -1,15 +1,14 @@
-import { REPORTS__GET } from '../actions/ActionTypes';
+import { ITEM__CREATE } from '../actions/ActionTypes';
 
 
 const initialState = {
   items: ['example item']
 };
 
-export default function report(state = initialState, action) {
+export default function list(state = initialState, action) {
   switch (action.type) {
-    case REPORTS__GET:
-      console.log('test');
-      return state;
+    case ITEM__CREATE:
+      return { items: state.items.concat(action.item) };
     default:
       return state;
   }

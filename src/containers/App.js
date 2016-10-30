@@ -15,6 +15,7 @@ class App extends Component {
     this.props.dispatch(getReports());
   }
   render() {
+    console.log(this.props.reports);
     return (
       <div className="App">
         <FlashMessages />
@@ -46,6 +47,7 @@ class App extends Component {
 App.propTypes = {
   children: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
+  reports: PropTypes.array
 };
 
 function mapStateToProps(state) {
