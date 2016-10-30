@@ -1,3 +1,4 @@
 export const ITEM__CREATE = 'ITEM__CREATE';
 export const FLASH_MESSAGE__CREATE = 'FLASH_MESSAGE__CREATE';
 export const FLASH_MESSAGE__DELETE = 'FLASH_MESSAGE__DELETE';
+export const REPORTS__GET = 'REPORTS__GET';

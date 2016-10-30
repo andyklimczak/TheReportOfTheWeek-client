@@ -29,3 +29,7 @@ export function dismissFlashMessage(stamp) {
 export function deleteFlashMessage(timestamp) {
   return { type: types.FLASH_MESSAGE__DELETE, timestamp };
 }
+
+export function getReports() {
+  return { type: types.REPORTS__GET };
+}

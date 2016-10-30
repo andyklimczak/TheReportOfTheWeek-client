@@ -1,13 +1,19 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
 import { VictoryPie } from 'victory';
+import { getReports } from '../actions/index';
 
 import '../assets/css/App.css';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.props.dispatch(getReports());
+  }
   render() {
     return (
       <div className="App">
@@ -38,7 +44,12 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default App;
+function mapStateToProps(state) {
+  return { reports: state.list.reports };
+}
+
+export default connect(mapStateToProps)(App);
