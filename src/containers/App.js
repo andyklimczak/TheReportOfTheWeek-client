@@ -24,6 +24,13 @@ class App extends Component {
         categoryCount[report.category] = categoryCount[report.category] + 1 || 1;
       });
       console.log(categoryCount);
+      const categoryCountData = [];
+      for(var v in categoryCount) {
+        console.log(v);
+        categoryCountData.push({category: v, count: categoryCount[v]});
+
+      }
+      console.log(categoryCountData);
       return (
         <div className="App">
           <FlashMessages />
@@ -39,14 +46,10 @@ class App extends Component {
             {this.props.children}
           </div>
           <VictoryPie
-            labelRadius={80}
-            data={[
-            {x: 'a', y: 4},
-            {x: 'b', y: 2},
-            {x: 'c', y: 9},
-            {x: 'd', y: 8},
-            {x: 'e', y: 3},
-          ]} />
+            data={categoryCountData}
+            x="category"
+            y="count"
+          />
         </div>
       );
     } else {
