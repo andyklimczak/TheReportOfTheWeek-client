@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
-import { VictoryPie } from 'victory';
+import { VictoryPie, VictoryTooltip } from 'victory';
 import { getReports } from '../actions/index';
 
 import '../assets/css/App.css';
@@ -49,6 +49,52 @@ class App extends Component {
             data={categoryCountData}
             x="category"
             y="count"
+            height={200}
+            width={200}
+						style={{
+							labels: {fontSize: 3},
+							parent: {border: "1px solid #ccc"}
+						}}
+						events={[
+							{
+								target: "data",
+								eventKey: [0, 2, 4],
+								eventHandlers: {
+									onClick: () => {
+										return [
+											{
+												mutation: (props) => {
+													return {
+														style: Object.assign({}, props.style, {fill: "orange"})
+													};
+												}
+											}, {
+												target: "labels",
+												mutation: () => {
+													return {text: "hey"};
+												}
+											}
+										];
+									},
+									onMouseEnter: () => {
+										return [
+											{
+												mutation: (props) => {
+													return {
+														style: Object.assign({}, props.style, {fill: "orange"})
+													};
+												}
+											}, {
+												target: "labels",
+												mutation: () => {
+													return {text: "hey"};
+												}
+											}
+										];
+                  }
+								}
+							}
+						 ]}
           />
         </div>
       );
