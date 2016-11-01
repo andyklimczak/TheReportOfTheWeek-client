@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
-import { VictoryPie, VictoryTooltip } from 'victory';
+import { VictoryPie, VictoryTooltip, Slice } from 'victory';
 import { getReports } from '../actions/index';
 
 import '../assets/css/App.css';
@@ -44,16 +44,18 @@ class App extends Component {
             data={categoryCountData}
             x="category"
             y="count"
-            height={200}
-            width={200}
+            height={150}
+            width={150}
+            colorScale="heatmap"
+            labels={(datum) => `${datum.category} - ${datum.count}`}
+            labelRadius={30}
+            dataComponent={<Slice />}
             style={{
-              labels: {fontSize: 3, fill: "transparent"},
-                parent: {border: "5px solid #ccc"}
+              labels: {fontSize: 2, fill: "transparent"},
             }}
             events={[
               {
                 target: "data",
-                eventKey: [0, 2, 4],
                 eventHandlers: {
                   onMouseOut: () => {
                     return [
@@ -62,8 +64,14 @@ class App extends Component {
                         mutation: (props) => {
                           return {
                             style: Object.assign({}, props.style, {fill: "transparent"}),
-                            text: `${props.datum.count}`
                           };
+                        },
+                      }, {
+                        mutation: (props) => {
+                          console.log(props);
+                          return {
+                            style: Object.assign({}, props.style, {stroke: "transparent", strokeWidth: .3}),
+                          }
                         }
                       }
                     ];
@@ -75,8 +83,14 @@ class App extends Component {
                         mutation: (props) => {
                           return {
                             style: Object.assign({}, props.style, {fill: "black"}),
-                            text: `${props.datum.category} - ${props.datum.count} videos`
                           };
+                        }
+                      }, {
+                        mutation: (props) => {
+                          console.log(props);
+                          return {
+                            style: Object.assign({}, props.style, {stroke: "black", strokeWidth: .3}),
+                          }
                         }
                       }
                     ];
