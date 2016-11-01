@@ -16,21 +16,16 @@ class App extends Component {
   }
   render() {
     const { reports } = this.props;
-    console.log(reports);
     if(reports.length > 1) {
       const categoryCount = {};
       reports.forEach(report => {
-        console.log(report.category);
         categoryCount[report.category] = categoryCount[report.category] + 1 || 1;
       });
-      console.log(categoryCount);
       const categoryCountData = [];
       for(var v in categoryCount) {
-        console.log(v);
         categoryCountData.push({category: v, count: categoryCount[v]});
 
       }
-      console.log(categoryCountData);
       return (
         <div className="App">
           <FlashMessages />
@@ -51,50 +46,44 @@ class App extends Component {
             y="count"
             height={200}
             width={200}
-						style={{
-							labels: {fontSize: 3},
-							parent: {border: "1px solid #ccc"}
-						}}
-						events={[
-							{
-								target: "data",
-								eventKey: [0, 2, 4],
-								eventHandlers: {
-									onClick: () => {
-										return [
-											{
-												mutation: (props) => {
-													return {
-														style: Object.assign({}, props.style, {fill: "orange"})
-													};
-												}
-											}, {
-												target: "labels",
-												mutation: () => {
-													return {text: "hey"};
-												}
-											}
-										];
-									},
-									onMouseEnter: () => {
-										return [
-											{
-												mutation: (props) => {
-													return {
-														style: Object.assign({}, props.style, {fill: "orange"})
-													};
-												}
-											}, {
-												target: "labels",
-												mutation: () => {
-													return {text: "hey"};
-												}
-											}
-										];
+            style={{
+              labels: {fontSize: 3, fill: "transparent"},
+                parent: {border: "5px solid #ccc"}
+            }}
+            events={[
+              {
+                target: "data",
+                eventKey: [0, 2, 4],
+                eventHandlers: {
+                  onMouseOut: () => {
+                    return [
+                      {
+                        target: "labels",
+                        mutation: (props) => {
+                          return {
+                            style: Object.assign({}, props.style, {fill: "transparent"}),
+                            text: `${props.datum.count}`
+                          };
+                        }
+                      }
+                    ];
+                  },
+                  onMouseOver: () => {
+                    return [
+                      {
+                        target: "labels",
+                        mutation: (props) => {
+                          return {
+                            style: Object.assign({}, props.style, {fill: "black"}),
+                            text: `${props.datum.category} - ${props.datum.count} videos`
+                          };
+                        }
+                      }
+                    ];
                   }
-								}
-							}
-						 ]}
+                }
+              }
+            ]}
           />
         </div>
       );
