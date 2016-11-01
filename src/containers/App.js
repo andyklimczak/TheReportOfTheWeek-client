@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
-import { VictoryPie, VictoryTooltip, Slice } from 'victory';
 import { getReports } from '../actions/index';
+import CategoryPie from '../components/CategoryPie';
 
 import '../assets/css/App.css';
 
@@ -40,65 +40,7 @@ class App extends Component {
           <div className="App-body">
             {this.props.children}
           </div>
-          <VictoryPie
-            data={categoryCountData}
-            x="category"
-            y="count"
-            height={150}
-            width={150}
-            colorScale="heatmap"
-            labels={(datum) => `${datum.category} - ${datum.count}`}
-            labelRadius={30}
-            dataComponent={<Slice />}
-            style={{
-              labels: {fontSize: 2, fill: "transparent"},
-            }}
-            events={[
-              {
-                target: "data",
-                eventHandlers: {
-                  onMouseOut: () => {
-                    return [
-                      {
-                        target: "labels",
-                        mutation: (props) => {
-                          return {
-                            style: Object.assign({}, props.style, {fill: "transparent"}),
-                          };
-                        },
-                      }, {
-                        mutation: (props) => {
-                          console.log(props);
-                          return {
-                            style: Object.assign({}, props.style, {stroke: "transparent", strokeWidth: .3}),
-                          }
-                        }
-                      }
-                    ];
-                  },
-                  onMouseOver: () => {
-                    return [
-                      {
-                        target: "labels",
-                        mutation: (props) => {
-                          return {
-                            style: Object.assign({}, props.style, {fill: "black"}),
-                          };
-                        }
-                      }, {
-                        mutation: (props) => {
-                          console.log(props);
-                          return {
-                            style: Object.assign({}, props.style, {stroke: "black", strokeWidth: .3}),
-                          }
-                        }
-                      }
-                    ];
-                  }
-                }
-              }
-            ]}
-          />
+          <CategoryPie data={categoryCountData} />
         </div>
       );
     } else {
