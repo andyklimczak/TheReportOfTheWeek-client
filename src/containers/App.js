@@ -38,9 +38,8 @@ class App extends Component {
             </div>
           </div>
           <div className="App-body">
-            {this.props.children}
+            <CategoryPie data={categoryCountData} />
           </div>
-          <CategoryPie data={categoryCountData} />
         </div>
       );
     } else {
@@ -60,7 +59,10 @@ App.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return { reports: state.reports.reports };
+  return {
+    reports: state.reports.reports,
+    filteredReports: state.reports.reports
+  };
 }
 
 export default connect(mapStateToProps)(App);
