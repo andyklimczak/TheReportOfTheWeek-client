@@ -5,6 +5,7 @@ import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
 import { getReports } from '../actions/index';
 import CategoryPie from '../components/CategoryPie';
+import { VictoryScatter } from 'victory';
 
 import '../assets/css/App.css';
 
@@ -14,18 +15,21 @@ class App extends Component {
     const { dispatch } = this.props;
     dispatch(getReports());
   }
+  computeCategoryPieValues(reports) {
+    const categoryCount = {};
+    reports.forEach(report => {
+      categoryCount[report.category] = categoryCount[report.category] + 1 || 1;
+    });
+    const categoryCountData = [];
+    for(var v in categoryCount) {
+      categoryCountData.push({category: v, count: categoryCount[v]});
+    }
+    return categoryCountData;
+  }
   render() {
     const { reports } = this.props;
     if(reports.length > 1) {
-      const categoryCount = {};
-      reports.forEach(report => {
-        categoryCount[report.category] = categoryCount[report.category] + 1 || 1;
-      });
-      const categoryCountData = [];
-      for(var v in categoryCount) {
-        categoryCountData.push({category: v, count: categoryCount[v]});
-
-      }
+      const categoryPieValues = this.computeCategoryPieValues(reports);
       return (
         <div className="App">
           <FlashMessages />
@@ -38,14 +42,14 @@ class App extends Component {
             </div>
           </div>
           <div className="App-body">
-            <CategoryPie data={categoryCountData} />
+            <CategoryPie data={categoryPieValues} />
           </div>
         </div>
       );
     } else {
       return (
         <div className="App">
-          Loading
+          Loading...
         </div>
       );
     }
