@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { VictoryPie, Slice } from 'victory';
 
 import '../assets/css/ListItemForm.css';
 
 
-class CategoryPie extends VictoryPie {
+class CategoryPie extends Component {
   render() {
     return (
       <VictoryPie

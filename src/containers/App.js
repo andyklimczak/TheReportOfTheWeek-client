@@ -5,7 +5,7 @@ import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
 import { getReports } from '../actions/index';
 import CategoryPie from '../components/CategoryPie';
-import { VictoryScatter } from 'victory';
+import RatingChart from '../components/RatingChart';
 
 import '../assets/css/App.css';
 
@@ -26,10 +26,17 @@ class App extends Component {
     }
     return categoryCountData;
   }
+  computeRatingValues(reports) {
+    return reports.filter(report => {
+      return report.rating;
+    });
+  }
   render() {
     const { reports } = this.props;
     if(reports.length > 1) {
       const categoryPieValues = this.computeCategoryPieValues(reports);
+      const ratingValues = this.computeRatingValues(reports);
+      console.log('rating values', ratingValues);
       return (
         <div className="App">
           <FlashMessages />
@@ -43,6 +50,7 @@ class App extends Component {
           </div>
           <div className="App-body">
             <CategoryPie data={categoryPieValues} />
+            <RatingChart data={ratingValues} />
           </div>
         </div>
       );
