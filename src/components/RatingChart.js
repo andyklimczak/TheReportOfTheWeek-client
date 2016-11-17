@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { VictoryScatter, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryScatter, VictoryChart, VictoryAxis, VictoryToolTip } from 'victory';
 
 import '../assets/css/ListItemForm.css';
 
@@ -27,6 +27,33 @@ class RatingChart extends Component {
           x="dateReleased"
           y="rating"
           size={1}
+          events={[{
+            target: "data",
+            eventHandlers: {
+              onMouseOver: () => {
+                return [
+                  {
+                    target: "data",
+                    mutation: (props) => {
+                      const fill = props.style.fill;
+                      return fill === "gold" ? null : {style: {fill: "gold"}};
+                    }
+                  }
+                ];
+              },
+              onMouseOut: () => {
+                return [
+                  {
+                    target: "data",
+                    mutation: (props) => {
+                      const fill = props.style.fill;
+                      return fill === "gold" ? null : {style: {fill: "gold"}};
+                    }
+                  }
+                ];
+              }
+            }
+          }]}
         />
       </VictoryChart>
     );
