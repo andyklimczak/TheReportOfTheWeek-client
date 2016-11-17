@@ -36,7 +36,6 @@ class App extends Component {
     if(reports.length > 1) {
       const categoryPieValues = this.computeCategoryPieValues(reports);
       const ratingValues = this.computeRatingValues(reports);
-      console.log('rating values', ratingValues);
       return (
         <div className="App">
           <FlashMessages />

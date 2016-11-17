@@ -9,10 +9,13 @@ class RatingChart extends Component {
     return (
       <VictoryChart>
         <VictoryAxis
-          tickCount={10}
+          tickCount={12}
+          tickFormat={(tick) => new Date(tick).toISOString().slice(0, 10)}
           style={{
-            ticks: {stroke: "black", strokeWidth: 3}
+            ticks: {stroke: "black", strokeWidth: 3},
+            tickLabels: {fontSize: 2}
           }}
+          label="Video Upload Date"
         />
         <VictoryAxis dependentAxis
           tickCount={4}

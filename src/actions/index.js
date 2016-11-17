@@ -36,6 +36,18 @@ export function getReports() {
       .then(res => {
         return res.json();
       }).then(json => {
+        return json.map(review => {
+          return {
+            category: review.category,
+            dateReleased: new Date(review.dateReleased),
+            manufacturer: review.manufacturer,
+            product: review.product,
+            rating: review.rating,
+            videoCode: review.videoCode,
+            videoTitle: review.videoTitle
+          };
+        });
+      }).then(json => {
         dispatch(setReports(json));
       });
     }, 5000);
