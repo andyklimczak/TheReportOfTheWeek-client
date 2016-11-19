@@ -6,6 +6,7 @@ import logo from '../logo.svg';
 import { getReports } from '../actions/index';
 import CategoryPie from '../components/CategoryPie';
 import RatingChart from '../components/RatingChart';
+import AverageRating from '../components/AverageRating';
 
 import '../assets/css/App.css';
 
@@ -31,11 +32,17 @@ class App extends Component {
       return report.rating;
     });
   }
+  computeAverageReviewRating(reports) {
+    return reports.reduce((sum, report) => {
+      return report.rating + sum;
+    }, 0) / reports.length;
+  }
   render() {
     const { reports } = this.props;
     if(reports.length > 1) {
       const categoryPieValues = this.computeCategoryPieValues(reports);
       const ratingValues = this.computeRatingValues(reports);
+      const averageReviewRating = this.computeAverageReviewRating(ratingValues);
       return (
         <div className="App">
           <FlashMessages />
@@ -49,6 +56,7 @@ class App extends Component {
           </div>
           <div className="App-body">
             <CategoryPie data={categoryPieValues} />
+            <AverageRating averageRating={averageReviewRating} count={ratingValues.length} />
             <RatingChart data={ratingValues} />
           </div>
         </div>
