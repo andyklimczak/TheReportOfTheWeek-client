@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { VictoryScatter, VictoryChart, VictoryAxis, VictoryToolTip } from 'victory';
+import { VictoryScatter, VictoryChart, VictoryAxis, VictoryTooltip } from 'victory';
 
 import '../assets/css/ListItemForm.css';
 
@@ -13,7 +13,7 @@ class RatingChart extends Component {
           tickFormat={(tick) => new Date(tick).toISOString().slice(0, 10)}
           style={{
             ticks: {stroke: "black", strokeWidth: 3},
-            tickLabels: {fontSize: 2}
+            tickLabels: {fontSize: 3}
           }}
           label="Video Upload Date"
         />
@@ -27,16 +27,29 @@ class RatingChart extends Component {
           x="dateReleased"
           y="rating"
           size={1}
+          labels={(datum) => `Product:${datum.product}\nRating: ${datum.rating}\nManufacturer: ${datum.manufacturer}\nDate Reviewed: ${new Date(datum.dateReleased).toISOString().slice(0,10)}`}
+          labelComponent={<VictoryTooltip
+            cornerRadius={0}
+          />}
+          style={{
+            labels: {fontSize: 3}
+          }}
           events={[{
             target: "data",
             eventHandlers: {
               onMouseOver: () => {
                 return [
                   {
+                    target: "labels",
+                    mutation: (props) => {
+                      return {
+                        active: true
+                      };
+                    }
+                  }, {
                     target: "data",
                     mutation: (props) => {
-                      const fill = props.style.fill;
-                      return fill === "gold" ? null : {style: {fill: "gold"}};
+                      return {style: {fill: "blue"}};
                     }
                   }
                 ];
@@ -44,10 +57,16 @@ class RatingChart extends Component {
               onMouseOut: () => {
                 return [
                   {
+                    target: "labels",
+                    mutation: (props) => {
+                      return {
+                        active: false
+                      };
+                    },
+                  }, {
                     target: "data",
                     mutation: (props) => {
-                      const fill = props.style.fill;
-                      return fill === "gold" ? null : {style: {fill: "gold"}};
+                      return {style: {fill: "black"}};
                     }
                   }
                 ];
