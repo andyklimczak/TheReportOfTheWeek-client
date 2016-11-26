@@ -54,6 +54,10 @@ export function getReports() {
   };
 }
 
+export function filterReports(reportCategory) {
+  return { type: types.REPORTS__FILTER, reportCategory };
+}
+
 export function setReports(reports) {
   return { type: types.REPORTS__GET, reports };
 }

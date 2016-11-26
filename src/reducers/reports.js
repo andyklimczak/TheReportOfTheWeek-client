@@ -1,4 +1,4 @@
-import { REPORTS__GET } from '../actions/ActionTypes';
+import { REPORTS__GET, REPORTS__FILTER } from '../actions/ActionTypes';
 
 
 const initialState = {
@@ -12,6 +12,14 @@ export default function reports(state = initialState, action) {
       return {
         reports: state.reports.concat(action.reports),
         filteredReports: state.reports.concat(action.reports),
+      };
+    case REPORTS__FILTER:
+      console.log('reports filter reducer');
+      return {
+        reports: state.reports,
+        filteredReports: state.reports.filter(report => {
+          return report.category === action.reportCategory;
+        })
       };
     default:
       return state;

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
-import { getReports } from '../actions/index';
+import { getReports, filterReports } from '../actions/index';
 import CategoryPie from '../components/CategoryPie';
 import RatingChart from '../components/RatingChart';
 import AverageRating from '../components/AverageRating';
@@ -12,6 +11,10 @@ import '../assets/css/App.css';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.filterReports = this.filterReports.bind(this);
+  }
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getReports());
@@ -37,11 +40,15 @@ class App extends Component {
       return report.rating + sum;
     }, 0) / reports.length;
   }
+  filterReports(e) {
+    const { dispatch } = this.props;
+    dispatch(filterReports(e.target.value));
+  }
   render() {
-    const { reports } = this.props;
+    const { reports, filteredReports } = this.props;
     if(reports.length > 1) {
       const categoryPieValues = this.computeCategoryPieValues(reports);
-      const ratingValues = this.computeRatingValues(reports);
+      const ratingValues = this.computeRatingValues(filteredReports);
       const averageReviewRating = this.computeAverageReviewRating(ratingValues);
       return (
         <div className="App">
@@ -50,8 +57,8 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Redux Starter v2!</h2>
             <div className="navigation">
-              <Link to={'/list'} className="list-item">List Maker</Link>
-              <Link to={'/about'} className="list-item">About</Link>
+              <button onClick={this.filterReports} className="btn btn-primary" value="Energy Crisis">Energy Crisis</button>
+              <button className="btn btn-primary">Reset</button>
             </div>
           </div>
           <div className="App-body">
@@ -74,13 +81,14 @@ class App extends Component {
 App.propTypes = {
   children: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
-  reports: PropTypes.array
+  reports: PropTypes.array,
+  filteredReports: PropTypes.array
 };
 
 function mapStateToProps(state) {
   return {
     reports: state.reports.reports,
-    filteredReports: state.reports.reports
+    filteredReports: state.reports.filteredReports
   };
 }
 
