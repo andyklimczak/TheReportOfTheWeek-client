@@ -56,7 +56,7 @@ class RatingChart extends Component {
                   }, {
                     target: "data",
                     mutation: (props) => {
-                      return {style: {fill: "blue", cursor: "pointer"}};
+                      return {style: {fill: "tomato", cursor: "pointer"}};
                     }
                   }
                 ];
@@ -73,7 +73,7 @@ class RatingChart extends Component {
                   }, {
                     target: "data",
                     mutation: (props) => {
-                      return {style: {fill: "black"}};
+                      return null;
                     }
                   }
                 ];
