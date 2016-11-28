@@ -4,7 +4,7 @@ import { VictoryPie, Slice } from 'victory';
 import '../assets/css/ListItemForm.css';
 
 
-class CategoryPie extends Component {
+class CategoryCount extends Component {
   render() {
     return (
       <VictoryPie
@@ -68,8 +68,8 @@ class CategoryPie extends Component {
   }
 }
 
-CategoryPie.propTypes = {
+CategoryCount.propTypes = {
   data: PropTypes.array
 };
 
-export default CategoryPie;
+export default CategoryCount;

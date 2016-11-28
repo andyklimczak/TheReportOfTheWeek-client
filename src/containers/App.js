@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
 import { getReports, filterReports } from '../actions/index';
-import CategoryPie from '../components/CategoryPie';
+import CategoryCount from '../components/CategoryCount';
 import RatingChart from '../components/RatingChart';
 import AverageRating from '../components/AverageRating';
 
@@ -19,7 +19,7 @@ class App extends Component {
     const { dispatch } = this.props;
     dispatch(getReports());
   }
-  computeCategoryPieValues(reports) {
+  computeCategoryCountValues(reports) {
     const categoryCount = {};
     reports.forEach(report => {
       categoryCount[report.category] = categoryCount[report.category] + 1 || 1;
@@ -47,7 +47,7 @@ class App extends Component {
   render() {
     const { reports, filteredReports } = this.props;
     if(reports.length > 1) {
-      const categoryPieValues = this.computeCategoryPieValues(reports);
+      const categoryCountValues = this.computeCategoryCountValues(reports);
       const ratingValues = this.computeRatingValues(filteredReports);
       const averageReviewRating = this.computeAverageReviewRating(ratingValues);
       return (
@@ -62,7 +62,7 @@ class App extends Component {
             </div>
           </div>
           <div className="App-body">
-            <CategoryPie data={categoryPieValues} />
+            <CategoryCount data={categoryCountValues} />
             <AverageRating averageRating={averageReviewRating} count={ratingValues.length} />
             <RatingChart data={ratingValues} />
           </div>
