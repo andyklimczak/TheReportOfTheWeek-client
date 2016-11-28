@@ -27,16 +27,23 @@ class RatingChart extends Component {
           x="dateReleased"
           y="rating"
           size={1}
-          labels={(datum) => `Product:${datum.product}\nRating: ${datum.rating}\nManufacturer: ${datum.manufacturer}\nDate Reviewed: ${new Date(datum.dateReleased).toISOString().slice(0,10)}`}
+          labels={(datum) => `Product: ${datum.product}\nRating: ${datum.rating}\nManufacturer: ${datum.manufacturer}\nCategory: ${datum.category}\nDate Reviewed: ${new Date(datum.dateReleased).toISOString().slice(0,10)}`}
           labelComponent={<VictoryTooltip
             cornerRadius={0}
+            style={{
+              fontSize: 3
+            }}
           />}
-          style={{
-            labels: {fontSize: 3}
-          }}
           events={[{
             target: "data",
             eventHandlers: {
+              onClick: () => {
+                return {
+                  mutation: (props) => {
+                    window.open(`https://www.youtube.com/watch?v=${props.datum.videoCode}`);
+                  }
+                };
+              },
               onMouseOver: () => {
                 return [
                   {
@@ -49,7 +56,7 @@ class RatingChart extends Component {
                   }, {
                     target: "data",
                     mutation: (props) => {
-                      return {style: {fill: "blue"}};
+                      return {style: {fill: "blue", cursor: "pointer"}};
                     }
                   }
                 ];
