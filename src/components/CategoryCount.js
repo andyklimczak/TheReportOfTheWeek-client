@@ -5,8 +5,9 @@ import '../assets/css/ListItemForm.css';
 
 class CategoryCount extends Component {
   render() {
+    console.log(this.props);
     return (
-      <svg viewBox="0 0 450 170">
+      <svg viewBox="0 0 450 200">
         <VictorySharedEvents
           events={[{
             childName: ["pie", "bar"],
@@ -54,9 +55,9 @@ class CategoryCount extends Component {
               standalone={false}
               style={{
                 data: { width: 10 },
-                labels: {fontSize: 2}
+                labels: {fontSize: 3}
               }}
-              labels={(datum) => datum.category}
+              labels={(datum) => `${datum.category}`}
               data={this.props.data}
               x="category"
               y="count"
@@ -71,6 +72,7 @@ class CategoryCount extends Component {
             y="count"
             height={200}
             width={200}
+            labels={(datum) => `${datum.count} ${datum.count > 1 ? 'reviews' : 'review'}`}
             style={{
               labels: {fontSize: 3, fill: "transparent"},
             }}
