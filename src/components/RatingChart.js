@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { VictoryScatter, VictoryChart, VictoryAxis, VictoryTooltip } from 'victory';
+import { VictoryScatter, VictoryChart, VictoryAxis, VictoryTooltip, VictoryLine } from 'victory';
 
 import '../assets/css/ListItemForm.css';
 
@@ -21,6 +21,14 @@ class RatingChart extends Component {
           tickCount={4}
           domain={[0, 10]}
           label="Rating"
+        />
+        <VictoryLine
+          data={this.props.data}
+          x="dateReleased"
+          y="rating"
+          standalone={false}
+          interpolation="monotoneX"
+          scale={{x: "time", y: "linear"}}
         />
         <VictoryScatter
           data={this.props.data}
