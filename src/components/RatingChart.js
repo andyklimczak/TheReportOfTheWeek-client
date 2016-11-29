@@ -1,11 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import { VictoryScatter, VictoryChart, VictoryAxis, VictoryTooltip, VictoryLine } from 'victory';
+import datalib from 'datalib';
 
 import '../assets/css/ListItemForm.css';
 
 
 class RatingChart extends Component {
+  computeLinearRegression(data) {
+    // TODO CLEANUP
+    const time = data.map(datum => {
+      return datum.dateReleased.getTime();
+    });
+    const rating = data.map(datum => {
+      return datum.rating;
+    });
+    const lin = datalib.linearRegression(time, rating);
+    return time.map(instance => {
+      return { x: new Date(instance), y: lin.slope * instance + lin.intercept }
+    });
+  }
   render() {
+    const linearRegression = this.computeLinearRegression(this.props.data);
+    console.log(linearRegression);
     return (
       <VictoryChart>
         <VictoryAxis
@@ -16,24 +32,23 @@ class RatingChart extends Component {
             tickLabels: {fontSize: 3}
           }}
           label="Video Upload Date"
+          standalone={false}
         />
         <VictoryAxis dependentAxis
           tickCount={4}
+          standalone={false}
           domain={[0, 10]}
           label="Rating"
         />
         <VictoryLine
-          data={this.props.data}
-          x="dateReleased"
-          y="rating"
+          data={linearRegression}
           standalone={false}
-          interpolation="monotoneX"
-          scale={{x: "time", y: "linear"}}
         />
         <VictoryScatter
           data={this.props.data}
           x="dateReleased"
           y="rating"
+          standalone={false}
           size={1}
           labels={(datum) => `Product: ${datum.product}\nRating: ${datum.rating}\nManufacturer: ${datum.manufacturer}\nCategory: ${datum.category}\nDate Reviewed: ${new Date(datum.dateReleased).toISOString().slice(0,10)}`}
           labelComponent={<VictoryTooltip
