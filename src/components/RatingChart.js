@@ -21,7 +21,6 @@ class RatingChart extends Component {
   }
   render() {
     const linearRegression = this.computeLinearRegression(this.props.data);
-    console.log(linearRegression);
     return (
       <VictoryChart>
         <VictoryAxis
@@ -42,7 +41,47 @@ class RatingChart extends Component {
         />
         <VictoryLine
           data={linearRegression}
+          label={`${this.props.averageRating.toFixed(4)} over ${linearRegression.length} reviews`}
           standalone={false}
+          style={{
+            data: {strokeWidth: 3},
+            labels: {fontSize: 3, fill: "black"},
+          }}
+          events={[{
+            target: "data",
+            eventHandlers: {
+              onMouseOver: () => {
+                return [{
+                  target: "data",
+                  mutation: (props) => {
+                    return {
+                      style: Object.assign({}, props.style, {stroke: "tomato", cursor: "pointer"})
+                    }
+                  }
+                }, {
+                  target: "labels",
+                  mutation: (props) => {
+                    return {
+                      style: Object.assign({}, props.style, {fill: "tomato"})
+                    }
+                  }
+                }];
+              },
+              onMouseOut: () => {
+                return [{
+                  target: "data",
+                  mutation: (props) => {
+                    return null;
+                  }
+                }, {
+                  target: "labels",
+                  mutation: (props) => {
+                    return null;
+                  }
+                }];
+              }
+            }
+          }]}
         />
         <VictoryScatter
           data={this.props.data}
@@ -79,7 +118,9 @@ class RatingChart extends Component {
                   }, {
                     target: "data",
                     mutation: (props) => {
-                      return {style: {fill: "tomato", cursor: "pointer"}};
+                      return {
+                        style: Object.assign({}, props.style, {fill: "tomato", cursor: "pointer"})
+                      }
                     }
                   }
                 ];
@@ -110,7 +151,8 @@ class RatingChart extends Component {
 }
 
 RatingChart.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  averageRating: PropTypes.number
 };
 
 export default RatingChart;

@@ -5,7 +5,6 @@ import logo from '../logo.svg';
 import { getReports, filterReports } from '../actions/index';
 import CategoryCount from '../components/CategoryCount';
 import RatingChart from '../components/RatingChart';
-import AverageRating from '../components/AverageRating';
 
 import '../assets/css/App.css';
 
@@ -63,8 +62,7 @@ class App extends Component {
           </div>
           <div className="App-body">
             <CategoryCount data={categoryCountValues} />
-            <AverageRating averageRating={averageReviewRating} count={ratingValues.length} />
-            <RatingChart data={ratingValues} />
+            <RatingChart data={ratingValues} averageRating={averageReviewRating} />
           </div>
         </div>
       );
