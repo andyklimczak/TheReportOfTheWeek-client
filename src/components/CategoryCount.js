@@ -20,11 +20,25 @@ class CategoryCount extends Component {
                       style: Object.assign({}, props.style, {fill: "tomato"})
                     };
                   }
+                }, {
+                  childName: ["pie"],
+                  target: "labels",
+                  mutation: (props) => {
+                    return {
+                      style: Object.assign({}, props.style, {fill: "black"}),
+                    };
+                  }
                 }];
               },
               onMouseOut: () => {
                 return [{
                   childName: ["pie", "bar"],
+                  mutation: () => {
+                    return null;
+                  }
+                }, {
+                  childName: ["pie"],
+                  target: "labels",
                   mutation: () => {
                     return null;
                   }
@@ -58,7 +72,7 @@ class CategoryCount extends Component {
             height={200}
             width={200}
             style={{
-              labels: {fontSize: 2, fill: "transparent"},
+              labels: {fontSize: 3, fill: "transparent"},
             }}
           />
         </VictorySharedEvents>
