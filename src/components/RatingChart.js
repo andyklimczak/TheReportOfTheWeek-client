@@ -8,16 +8,18 @@ import '../assets/css/ListItemForm.css';
 class RatingChart extends Component {
   computeLinearRegression(data) {
     // TODO CLEANUP
-    const time = data.map(datum => {
-      return datum.dateReleased.getTime();
-    });
-    const rating = data.map(datum => {
-      return datum.rating;
-    });
-    const lin = datalib.linearRegression(time, rating);
-    return time.map(instance => {
-      return { x: new Date(instance), y: lin.slope * instance + lin.intercept }
-    });
+    if(data.length > 1) {
+      const time = data.map(datum => {
+        return datum.dateReleased.getTime();
+      });
+      const rating = data.map(datum => {
+        return datum.rating;
+      });
+      const lin = datalib.linearRegression(time, rating);
+      return time.map(instance => {
+        return { x: new Date(instance), y: lin.slope * instance + lin.intercept }
+      });
+    }
   }
   render() {
     const linearRegression = this.computeLinearRegression(this.props.data);

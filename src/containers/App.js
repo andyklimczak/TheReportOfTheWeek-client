@@ -43,12 +43,19 @@ class App extends Component {
     const { dispatch } = this.props;
     dispatch(filterReports(e.target.value));
   }
+  getCategories(reports) {
+    const c = reports.map(report => {
+      return report.category;
+    });
+    return Array.from(new Set(c));
+  }
   render() {
     const { reports, filteredReports } = this.props;
     if(reports.length > 1) {
       const categoryCountValues = this.computeCategoryCountValues(reports);
       const ratingValues = this.computeRatingValues(filteredReports);
       const averageReviewRating = this.computeAverageReviewRating(ratingValues);
+      const categories = this.getCategories(reports);
       return (
         <div className="App">
           <FlashMessages />
@@ -56,8 +63,10 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Redux Starter v2!</h2>
             <div className="navigation">
-              <button onClick={this.filterReports} className="btn btn-primary" value="Energy Crisis">Energy Crisis</button>
-              <button className="btn btn-primary">Reset</button>
+              {categories.map((category, i) => {
+                return <button onClick={this.filterReports} className="btn btn-primary" value={category} key={i}>{category}</button>
+              })}
+              <button onClick={this.filterReports} className="btn btn-primary" value="Reset">Reset</button>
             </div>
           </div>
           <div className="App-body">

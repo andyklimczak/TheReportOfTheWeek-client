@@ -14,13 +14,19 @@ export default function reports(state = initialState, action) {
         filteredReports: state.reports.concat(action.reports),
       };
     case REPORTS__FILTER:
-      console.log('reports filter reducer');
-      return {
-        reports: state.reports,
-        filteredReports: state.reports.filter(report => {
-          return report.category === action.reportCategory;
-        })
-      };
+      if(action.reportCategory === 'Reset') {
+        return {
+          reports: state.reports,
+          filteredReports: state.reports
+        };
+      } else {
+        return {
+          reports: state.reports,
+          filteredReports: state.reports.filter(report => {
+            return report.category === action.reportCategory;
+          })
+        };
+      }
     default:
       return state;
   }
