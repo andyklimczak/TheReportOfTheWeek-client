@@ -28,20 +28,26 @@ class RatingChart extends Component {
           tickFormat={(tick) => new Date(tick).toISOString().slice(0, 10)}
           style={{
             ticks: {stroke: "black", strokeWidth: 3},
-            tickLabels: {fontSize: 3}
+            tickLabels: {fontSize: 3},
+            axisLabel: {fontSize: 5}
           }}
-          label="Video Upload Date"
+          label="Review Date"
           standalone={false}
         />
         <VictoryAxis dependentAxis
-          tickCount={4}
+          tickCount={5}
           standalone={false}
           domain={[0, 10]}
           label="Rating"
+          style={{
+            tickLabels: {fontSize: 7},
+            axisLabel: {fontSize: 5},
+            grid: {stroke: "gray"}
+          }}
         />
         <VictoryLine
           data={linearRegression}
-          label={`${this.props.averageRating.toFixed(4)} over ${linearRegression.length} reviews`}
+          label={`${this.props.averageRating.toFixed(4)} mean ${linearRegression.length} reviews`}
           standalone={false}
           style={{
             data: {strokeWidth: 3},

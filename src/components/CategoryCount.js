@@ -6,7 +6,7 @@ import '../assets/css/ListItemForm.css';
 class CategoryCount extends Component {
   render() {
     return (
-      <svg viewBox="0 0 450 200">
+      <svg viewBox="0 0 450 170">
         <VictorySharedEvents
           events={[{
             childName: ["pie", "bar"],
