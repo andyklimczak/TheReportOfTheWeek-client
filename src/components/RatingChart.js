@@ -99,9 +99,13 @@ class RatingChart extends Component {
           size={1}
           labels={(datum) => `Product: ${datum.product}\nRating: ${datum.rating}\nManufacturer: ${datum.manufacturer}\nCategory: ${datum.category}\nDate Reviewed: ${new Date(datum.dateReleased).toISOString().slice(0,10)}`}
           labelComponent={<VictoryTooltip
-            cornerRadius={0}
+            dy={-7}
             style={{
               fontSize: 3
+            }}
+            flyoutStyle={{
+              stroke: "lavender",
+              fill: "lavender"
             }}
           />}
           events={[{
