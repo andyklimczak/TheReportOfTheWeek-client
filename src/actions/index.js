@@ -32,7 +32,7 @@ export function deleteFlashMessage(timestamp) {
 export function getReports() {
   return dispatch => {
     setTimeout(() => {
-      fetch('https://thereportoftheweek-api.herokuapp.com/reports')
+      fetch(`${process.env.API_URL}/reports`)
       .then(res => {
         return res.json();
       }).then(json => {

@@ -13,6 +13,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.filterReports = this.filterReports.bind(this);
+    console.log(process.env.API_URL);
+    console.log(process.env.NODE_ENV);
   }
   componentDidMount() {
     const { dispatch } = this.props;
