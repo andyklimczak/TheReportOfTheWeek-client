@@ -5,6 +5,7 @@ import logo from '../logo.svg';
 import { getReports, filterReports } from '../actions/index';
 import CategoryCount from '../components/CategoryCount';
 import RatingChart from '../components/RatingChart';
+import { forIn, groupBy } from 'lodash';
 
 import '../assets/css/App.css';
 
@@ -13,23 +14,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.filterReports = this.filterReports.bind(this);
-    console.log(process.env.API_URL);
-    console.log(process.env.NODE_ENV);
   }
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getReports());
   }
   computeCategoryCountValues(reports) {
-    const categoryCount = {};
-    reports.forEach(report => {
-      categoryCount[report.category] = categoryCount[report.category] + 1 || 1;
+    const categoryCount = [];
+    const grouping = groupBy(reports, 'category');
+    forIn(grouping, (v, k) => {
+      categoryCount.push({category: k, count: v.length});
     });
-    const categoryCountData = [];
-    for(var v in categoryCount) {
-      categoryCountData.push({category: v, count: categoryCount[v]});
-    }
-    return categoryCountData;
+    return categoryCount;
   }
   computeRatingValues(reports) {
     return reports.filter(report => {
