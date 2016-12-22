@@ -1,8 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { VictoryScatter, VictoryChart, VictoryAxis, VictoryTooltip, VictoryLine } from 'victory';
+import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer } from 'recharts';
 import datalib from 'datalib';
 
 import '../assets/css/ListItemForm.css';
+
+const dateFormat = (time) => new Date(time).toISOString().slice(0, 10);
+const getTicks = data => {
+  return data.map(datum => datum.dateReleased.getTime());
+}
 
 
 class RatingChart extends Component {
@@ -22,142 +28,28 @@ class RatingChart extends Component {
     }
   }
   render() {
-    const linearRegression = this.computeLinearRegression(this.props.data);
+    //const linearRegression = this.computeLinearRegression(this.props.data);
+    const { data } = this.props;
     return (
-      <VictoryChart>
-        <VictoryAxis
-          tickCount={12}
-          tickFormat={(tick) => new Date(tick).toISOString().slice(0, 10)}
-          style={{
-            ticks: {stroke: "black", strokeWidth: 3},
-            tickLabels: {fontSize: 3},
-            axisLabel: {fontSize: 5}
-          }}
-          label="Review Date"
-          standalone={false}
-        />
-        <VictoryAxis dependentAxis
-          tickCount={5}
-          standalone={false}
-          domain={[0, 10]}
-          label="Rating"
-          style={{
-            tickLabels: {fontSize: 7},
-            axisLabel: {fontSize: 5},
-            grid: {stroke: "gray"}
-          }}
-        />
-        <VictoryLine
-          data={linearRegression}
-          label={`${this.props.averageRating.toFixed(4)} mean ${linearRegression.length} reviews`}
-          standalone={false}
-          style={{
-            data: {strokeWidth: 3},
-            labels: {fontSize: 3, fill: "black"},
-          }}
-          events={[{
-            target: "data",
-            eventHandlers: {
-              onMouseOver: () => {
-                return [{
-                  target: "data",
-                  mutation: (props) => {
-                    return {
-                      style: Object.assign({}, props.style, {stroke: "tomato", cursor: "pointer"})
-                    }
-                  }
-                }, {
-                  target: "labels",
-                  mutation: (props) => {
-                    return {
-                      style: Object.assign({}, props.style, {fill: "tomato"})
-                    }
-                  }
-                }];
-              },
-              onMouseOut: () => {
-                return [{
-                  target: "data",
-                  mutation: (props) => {
-                    return null;
-                  }
-                }, {
-                  target: "labels",
-                  mutation: (props) => {
-                    return null;
-                  }
-                }];
-              }
-            }
-          }]}
-        />
-        <VictoryScatter
-          data={this.props.data}
-          x="dateReleased"
-          y="rating"
-          standalone={false}
-          size={1}
-          labels={(datum) => `Product: ${datum.product}\nRating: ${datum.rating}\nManufacturer: ${datum.manufacturer}\nCategory: ${datum.category}\nDate Reviewed: ${new Date(datum.dateReleased).toISOString().slice(0,10)}`}
-          labelComponent={<VictoryTooltip
-            dy={-7}
-            style={{
-              fontSize: 3
-            }}
-            flyoutStyle={{
-              stroke: "lavender",
-              fill: "lavender"
-            }}
-          />}
-          events={[{
-            target: "data",
-            eventHandlers: {
-              onClick: () => {
-                return {
-                  mutation: (props) => {
-                    window.open(`https://www.youtube.com/watch?v=${props.datum.videoCode}`);
-                  }
-                };
-              },
-              onMouseOver: () => {
-                return [
-                  {
-                    target: "labels",
-                    mutation: (props) => {
-                      return {
-                        active: true
-                      };
-                    }
-                  }, {
-                    target: "data",
-                    mutation: (props) => {
-                      return {
-                        style: Object.assign({}, props.style, {fill: "tomato", cursor: "pointer"})
-                      }
-                    }
-                  }
-                ];
-              },
-              onMouseOut: () => {
-                return [
-                  {
-                    target: "labels",
-                    mutation: (props) => {
-                      return {
-                        active: false
-                      };
-                    },
-                  }, {
-                    target: "data",
-                    mutation: (props) => {
-                      return null;
-                    }
-                  }
-                ];
-              }
-            }
-          }]}
-        />
-      </VictoryChart>
+      <ResponsiveContainer aspect={9/4}>
+        <ScatterChart
+        >
+          <YAxis
+            dataKey={'rating'}
+          />
+          <XAxis
+            dataKey={'dateReleasedUnix'}
+            type="number"
+            tickCount={8}
+            tickFormatter={dateFormat}
+            domain={[new Date(2011, 1, 1).getTime(), new Date().getTime()]}
+          />
+          <Scatter
+            data={data}
+          />
+          <Tooltip />
+        </ScatterChart>
+      </ResponsiveContainer>
     );
   }
 }

@@ -40,6 +40,7 @@ export function getReports() {
           return {
             category: review.category,
             dateReleased: new Date(review.dateReleased),
+            dateReleasedUnix: parseInt(new Date(review.dateReleased).getTime()),
             manufacturer: review.manufacturer,
             product: review.product,
             rating: review.rating,

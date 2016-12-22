@@ -69,7 +69,9 @@ class App extends Component {
           </div>
           <div className="App-body">
             <CategoryCount data={categoryCountValues} />
-            <RatingChart data={ratingValues} averageRating={averageReviewRating} />
+            <div className="test">
+              <RatingChart data={ratingValues} averageRating={averageReviewRating} />
+            </div>
           </div>
         </div>
       );
