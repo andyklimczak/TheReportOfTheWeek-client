@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer } from 'recharts';
+import RatingChartTooltip from './RatingChartTooltip';
 import datalib from 'datalib';
 
 import '../assets/css/ListItemForm.css';
@@ -30,11 +31,11 @@ class RatingChart extends Component {
     //const linearRegression = this.computeLinearRegression(this.props.data);
     const { data } = this.props;
     return (
-      <ResponsiveContainer aspect={9/4}>
-        <ScatterChart
-        >
+      <ResponsiveContainer aspect={9/3}>
+        <ScatterChart>
           <YAxis
             ticks={[2,4,6,8,10]}
+            domain={[0, 10.5]}
             dataKey={'rating'}
           />
           <XAxis
@@ -46,8 +47,9 @@ class RatingChart extends Component {
           />
           <Scatter
             data={data}
+            onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }
           />
-          <Tooltip />
+          <Tooltip content={<RatingChartTooltip/>} />
         </ScatterChart>
       </ResponsiveContainer>
     );
