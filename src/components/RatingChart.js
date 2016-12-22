@@ -34,6 +34,7 @@ class RatingChart extends Component {
         <ScatterChart
         >
           <YAxis
+            ticks={[2,4,6,8,10]}
             dataKey={'rating'}
           />
           <XAxis
