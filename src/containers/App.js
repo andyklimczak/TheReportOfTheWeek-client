@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import FlashMessages from './common/FlashMessages';
 import logo from '../logo.svg';
 import { getReports, filterReports } from '../actions/index';
-import CategoryCount from '../components/CategoryCount';
+import CategoryCountBar from '../components/CategoryCountBar';
+import CategoryCountPie from '../components/CategoryCountPie';
 import RatingChart from '../components/RatingChart';
 import { forIn, groupBy } from 'lodash';
 
@@ -68,10 +69,11 @@ class App extends Component {
             </div>
           </div>
           <div className="App-body">
-            <CategoryCount data={categoryCountValues} />
-            <div className="test">
-              <RatingChart data={ratingValues} averageRating={averageReviewRating} />
+            <div className="category-count">
+              <CategoryCountBar data={categoryCountValues} />
+              <CategoryCountPie data={categoryCountValues} />
             </div>
+            <RatingChart data={ratingValues} averageRating={averageReviewRating} />
           </div>
         </div>
       );
