@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { VictoryScatter, VictoryChart, VictoryAxis, VictoryTooltip, VictoryLine } from 'victory';
 import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer } from 'recharts';
 import datalib from 'datalib';
 
@@ -8,7 +7,7 @@ import '../assets/css/ListItemForm.css';
 const dateFormat = (time) => new Date(time).toISOString().slice(0, 10);
 const getTicks = data => {
   return data.map(datum => datum.dateReleased.getTime());
-}
+};
 
 
 class RatingChart extends Component {
@@ -23,7 +22,7 @@ class RatingChart extends Component {
       });
       const lin = datalib.linearRegression(time, rating);
       return time.map(instance => {
-        return { x: new Date(instance), y: lin.slope * instance + lin.intercept }
+        return { x: new Date(instance), y: lin.slope * instance + lin.intercept };
       });
     }
   }

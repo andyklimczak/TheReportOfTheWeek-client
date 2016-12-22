@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { VictoryPie, Slice, VictorySharedEvents, VictoryBar, VictoryLabel } from 'victory';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie } from 'recharts';
 
 import '../assets/css/ListItemForm.css';

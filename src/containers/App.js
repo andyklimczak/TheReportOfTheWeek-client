@@ -62,7 +62,7 @@ class App extends Component {
             <h2>Redux Starter v2!</h2>
             <div className="navigation">
               {categories.map((category, i) => {
-                return <button onClick={this.filterReports} className="btn btn-primary" value={category} key={i}>{category}</button>
+                return <button onClick={this.filterReports} className="btn btn-primary" value={category} key={i}>{category}</button>;
               })}
               <button onClick={this.filterReports} className="btn btn-primary" value="Reset">Reset</button>
             </div>
