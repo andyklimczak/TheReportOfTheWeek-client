@@ -1,22 +1,28 @@
 import React, { Component, PropTypes } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { categoryToColor } from '../utils/utils.js';
 
 import '../assets/css/ListItemForm.css';
 
 class CategoryCountPie extends Component {
   render() {
+    const { data } = this.props;
     return (
       <PieChart
         width={800}
         height={400}>
         <Pie
           fill="salmon"
-          data={this.props.data}
+          data={data}
           nameKey="category"
           innerRadius={75}
           minAngle={3}
           paddingAngle={2}
-          valueKey="count" />
+          valueKey="count">
+          {
+            data.map(datum => <Cell fill={categoryToColor(datum.category)} />)
+          }
+        </Pie>
         <Tooltip />
       </PieChart>
     );
