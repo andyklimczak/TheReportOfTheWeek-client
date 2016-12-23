@@ -20,8 +20,7 @@ class CategoryCountBar extends Component {
           barSize={60}
           name="Reviews"
           dataKey="count"
-          minPointSize={5}
-          fill="salmon">
+          minPointSize={5}>
           {
             data.map(datum => <Cell fill={categoryToColor(datum.category)} />)
           }

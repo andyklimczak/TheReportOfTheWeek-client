@@ -12,7 +12,6 @@ class CategoryCountPie extends Component {
         width={800}
         height={400}>
         <Pie
-          fill="salmon"
           data={data}
           nameKey="category"
           innerRadius={75}
