@@ -41,3 +41,10 @@ a.list-item {
 .no-decoration {
   list-style: none;
 }
+
+.category-count {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
