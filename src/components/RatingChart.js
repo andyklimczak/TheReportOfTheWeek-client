@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import RatingChartTooltip from './RatingChartTooltip';
-import datalib from 'datalib';
+import { categoryToColor } from '../utils/utils.js';
 
 import '../assets/css/ListItemForm.css';
 
@@ -39,15 +39,19 @@ class RatingChart extends Component {
           />
           <Scatter
             data={data}
-            onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }
-          />
+            onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }>
+          {
+            data.map(datum => <Cell fill={categoryToColor(datum.category)} />)
+          }
+          </Scatter>
           <Tooltip content={<RatingChartTooltip/>} />
           <ReferenceLine
             y={average(data)}
             label={`${average(data).toFixed(2)} avg`}
-            stroke="red"
+            stroke="navy"
             strokeDasharray="3 3"
           />
+          <CartesianGrid />
         </ScatterChart>
       </ResponsiveContainer>
     );
