@@ -22,7 +22,7 @@ class CategoryCountBar extends Component {
           dataKey="count"
           minPointSize={5}>
           {
-            data.map(datum => <Cell fill={categoryToColor(datum.category)} />)
+            data.map((datum, index) => <Cell fill={categoryToColor(datum.category)} key={index} />)
           }
         </Bar>
       </BarChart>

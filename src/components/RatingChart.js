@@ -41,7 +41,7 @@ class RatingChart extends Component {
             data={data}
             onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }>
           {
-            data.map(datum => <Cell fill={categoryToColor(datum.category)} />)
+            data.map((datum, index) => <Cell cursor="pointer" fill={categoryToColor(datum.category)} key={index} />)
           }
           </Scatter>
           <Tooltip content={<RatingChartTooltip/>} />

@@ -19,7 +19,7 @@ class CategoryCountPie extends Component {
           paddingAngle={2}
           valueKey="count">
           {
-            data.map(datum => <Cell fill={categoryToColor(datum.category)} />)
+            data.map((datum, index) => <Cell fill={categoryToColor(datum.category)} key={index} />)
           }
         </Pie>
         <Tooltip />
