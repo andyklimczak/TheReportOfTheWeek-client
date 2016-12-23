@@ -1,55 +1,53 @@
 import React, { Component, PropTypes } from 'react';
-import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer } from 'recharts';
+import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer, ReferenceLine } from 'recharts';
 import RatingChartTooltip from './RatingChartTooltip';
 import datalib from 'datalib';
 
 import '../assets/css/ListItemForm.css';
 
-const dateFormat = (time) => new Date(time).toISOString().slice(0, 10);
-const getTicks = data => {
-  return data.map(datum => datum.dateReleased.getTime());
+const dateFormat = (time) => new Date(time).toISOString().slice(0, 4);
+const getTicks = () => {
+  return [2011, 2012, 2013, 2014, 2015, 2016].map(time => new Date(time, 0, 1).getTime());
+};
+const average = (data) => {
+  return data.reduce((accu, datum) => {
+    return accu + datum.rating;
+  }, 0) / data.length;
 };
 
-
 class RatingChart extends Component {
-  computeLinearRegression(data) {
-    // TODO CLEANUP
-    if(data.length > 1) {
-      const time = data.map(datum => {
-        return datum.dateReleased.getTime();
-      });
-      const rating = data.map(datum => {
-        return datum.rating;
-      });
-      const lin = datalib.linearRegression(time, rating);
-      return time.map(instance => {
-        return { x: new Date(instance), y: lin.slope * instance + lin.intercept };
-      });
-    }
-  }
   render() {
-    //const linearRegression = this.computeLinearRegression(this.props.data);
     const { data } = this.props;
     return (
-      <ResponsiveContainer aspect={9/3}>
-        <ScatterChart>
+      <ResponsiveContainer
+        aspect={9/3}
+      >
+        <ScatterChart
+          margin={{ top: 20, right: 90}}
+        >
           <YAxis
             ticks={[2,4,6,8,10]}
-            domain={[0, 10.5]}
+            domain={[0, 10]}
             dataKey={'rating'}
           />
           <XAxis
             dataKey={'dateReleasedUnix'}
             type="number"
-            tickCount={8}
+            ticks={getTicks()}
             tickFormatter={dateFormat}
-            domain={[new Date(2011, 1, 1).getTime(), new Date().getTime()]}
+            domain={[new Date(2011, 0, 1).getTime(), new Date().getTime()]}
           />
           <Scatter
             data={data}
             onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }
           />
           <Tooltip content={<RatingChartTooltip/>} />
+          <ReferenceLine
+            y={average(data)}
+            label={`${average(data).toFixed(2)} avg`}
+            stroke="red"
+            strokeDasharray="3 3"
+          />
         </ScatterChart>
       </ResponsiveContainer>
     );
