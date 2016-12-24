@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 
-import CategoryCountBar from '../../src/components/CategoryCountBar.js';
+import CategoryCountPie from '../../src/components/CategoryCountPie.js';
 
-describe('CategoryCountBar', () => {
+describe('CategoryCountPie', () => {
   const props = {
     data: [
       {
@@ -24,11 +24,11 @@ describe('CategoryCountBar', () => {
 
   it('renders', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CategoryCountBar { ...props } />, div);
+    ReactDOM.render(<CategoryCountPie { ...props } />, div);
   });
 
-  it('shows three bars', () => {
-    const element = mount(<CategoryCountBar { ...props } />);
-    expect(element.find('.recharts-bar-rectangle').length).toBe(3);
+  it('shows three sectors', () => {
+    const element = mount(<CategoryCountPie { ...props } />);
+    expect(element.find('.recharts-pie-sector').length).toBe(3);
   });
 });
