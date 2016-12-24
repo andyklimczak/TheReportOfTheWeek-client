@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andyklimczak/TheReportOfTheWeek-client.svg?branch=master)](https://travis-ci.org/andyklimczak/TheReportOfTheWeek-client)
+
 # redux-starter-v2
 
 This is an overhaul of [redux-starter](https://github.com/marcgarreau/redux-starter). 
