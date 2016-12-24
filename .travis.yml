@@ -4,3 +4,5 @@ node_js:
   - "node"
 notifications:
   email: false
+script:
+  - "yarn run testci"
