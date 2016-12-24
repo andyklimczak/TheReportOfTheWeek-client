@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from 'enzyme';
+import { render } from 'enzyme';
 
 import CategoryCountBar from '../../src/components/CategoryCountBar.js';
 
@@ -28,7 +28,7 @@ describe('CategoryCountBar', () => {
   });
 
   it('shows three bars', () => {
-    const element = mount(<CategoryCountBar { ...props } />);
+    const element = render(<CategoryCountBar { ...props } />);
     expect(element.find('.recharts-bar-rectangle').length).toBe(3);
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from 'enzyme';
+import { render } from 'enzyme';
 
 import CategoryCountPie from '../../src/components/CategoryCountPie.js';
 
@@ -28,7 +28,7 @@ describe('CategoryCountPie', () => {
   });
 
   it('shows three sectors', () => {
-    const element = mount(<CategoryCountPie { ...props } />);
+    const element = render(<CategoryCountPie { ...props } />);
     expect(element.find('.recharts-pie-sector').length).toBe(3);
   });
 });

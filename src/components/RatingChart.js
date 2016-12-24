@@ -32,24 +32,25 @@ class RatingChart extends Component {
           />
           <XAxis
             dataKey={'dateReleasedUnix'}
-            type="number"
+            type='number'
             ticks={getTicks()}
             tickFormatter={dateFormat}
             domain={[new Date(2011, 0, 1).getTime(), new Date().getTime()]}
           />
           <Scatter
             data={data}
-            onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }>
-          {
-            data.map((datum, index) => <Cell cursor="pointer" fill={categoryToColor(datum.category)} key={index} />)
-          }
+            onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }
+          >
+            {
+              data.map((datum, index) => <Cell cursor="pointer" fill={categoryToColor(datum.category)} key={index} />)
+            }
           </Scatter>
           <Tooltip content={<RatingChartTooltip/>} />
           <ReferenceLine
             y={average(data)}
             label={`${average(data).toFixed(2)} avg`}
-            stroke="navy"
-            strokeDasharray="3 3"
+            stroke='navy'
+            strokeDasharray='3 3'
           />
           <CartesianGrid />
         </ScatterChart>
