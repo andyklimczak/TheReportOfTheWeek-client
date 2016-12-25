@@ -9,7 +9,7 @@ function categoryToColor(category) {
     case 'Drink Review':
       return 'aqua';
     case 'Meal Review':
-      return 'brown';
+      return 'violet';
     default:
       return 'salmon';
   }

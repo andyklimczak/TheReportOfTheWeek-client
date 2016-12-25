@@ -23,7 +23,7 @@ describe('Category To Color', () => {
 
   it('Meal Review', () => {
     const result = utils.categoryToColor('Meal Review');
-    expect(result).toEqual('brown');
+    expect(result).toEqual('violet');
   });
 
   it('Default', () => {
