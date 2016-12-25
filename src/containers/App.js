@@ -48,6 +48,26 @@ class App extends Component {
     });
     return Array.from(new Set(c));
   }
+  findYear(report) {
+    return new Date(report.dateReleasedUnix).toISOString().slice(0, 4);
+  }
+  getCategory(report, reports) {
+    if(!(report.category in reports)) {
+      reports[report.category] = 0;
+    }
+    reports[report.category] += 1;
+    return reports;
+  }
+  yearSplit(reports) {
+    return reports.reduce((obj, x) => {
+      const reportYear = this.findYear(x);
+      if(!(reportYear in obj)) {
+        obj[reportYear] = {};
+      }
+      obj[reportYear] = (this.getCategory(x, obj[reportYear]));
+      return obj;
+    }, {});
+  }
   render() {
     const { reports, filteredReports } = this.props;
     if(reports.length > 1) {
@@ -55,6 +75,8 @@ class App extends Component {
       const ratingValues = this.computeRatingValues(filteredReports);
       const averageReviewRating = this.computeAverageReviewRating(ratingValues);
       const categories = this.getCategories(reports);
+      const yearSplit = this.yearSplit(reports);
+      console.log(yearSplit);
       return (
         <div className="App">
           <FlashMessages />
