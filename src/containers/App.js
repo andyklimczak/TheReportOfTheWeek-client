@@ -82,7 +82,6 @@ class App extends Component {
       const averageReviewRating = this.computeAverageReviewRating(ratingValues);
       const categories = this.getCategories(reports);
       const yearSplit = this.yearSplit(reports);
-      console.log(yearSplit);
       return (
         <div className="App">
           <FlashMessages />
