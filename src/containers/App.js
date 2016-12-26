@@ -6,6 +6,7 @@ import { getReports, filterReports } from '../actions/index';
 import CategoryCountBar from '../components/CategoryCountBar';
 import CategoryCountPie from '../components/CategoryCountPie';
 import RatingChart from '../components/RatingChart';
+import CategoryYearlyStacked from '../components/CategoryYearlyStacked';
 import { forIn, groupBy } from 'lodash';
 
 import '../assets/css/App.css';
@@ -59,7 +60,8 @@ class App extends Component {
     return reports;
   }
   yearSplit(reports) {
-    return reports.reduce((obj, x) => {
+    // TODO clean up somehow
+    const object = reports.reduce((obj, x) => {
       const reportYear = this.findYear(x);
       if(!(reportYear in obj)) {
         obj[reportYear] = {};
@@ -67,6 +69,10 @@ class App extends Component {
       obj[reportYear] = (this.getCategory(x, obj[reportYear]));
       return obj;
     }, {});
+
+    return Object.keys(object).map(key => {
+      return { year: key, ...object[key] };
+    });
   }
   render() {
     const { reports, filteredReports } = this.props;
@@ -96,6 +102,7 @@ class App extends Component {
               <CategoryCountPie data={categoryCountValues} />
             </div>
             <RatingChart data={ratingValues} averageRating={averageReviewRating} />
+            <CategoryYearlyStacked data={yearSplit} />
           </div>
         </div>
       );
