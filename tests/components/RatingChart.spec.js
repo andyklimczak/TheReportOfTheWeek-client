@@ -50,7 +50,7 @@ describe('RatingChart', () => {
     ]
   };
 
-  pit('renders', () => {
+  it('renders', () => {
     const div = document.createElement('div');
     ReactDOM.render(<RatingChart { ...props } />, div);
   });

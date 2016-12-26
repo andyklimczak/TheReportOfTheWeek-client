@@ -7,7 +7,6 @@ import '../assets/css/ListItemForm.css';
 class CategoryYearlyStacked extends Component {
   render() {
     const { data } = this.props;
-    console.log(JSON.stringify(data));
     return (
       <ResponsiveContainer
         aspect={9/3}
