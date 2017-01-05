@@ -34,11 +34,6 @@ class App extends Component {
       return report.rating;
     });
   }
-  computeAverageReviewRating(reports) {
-    return reports.reduce((sum, report) => {
-      return report.rating + sum;
-    }, 0) / reports.length;
-  }
   filterReports(e) {
     const { dispatch } = this.props;
     dispatch(filterReports(e.target.value));
@@ -79,7 +74,6 @@ class App extends Component {
     if(reports.length > 1) {
       const categoryCountValues = this.computeCategoryCountValues(reports);
       const ratingValues = this.computeRatingValues(filteredReports);
-      const averageReviewRating = this.computeAverageReviewRating(ratingValues);
       const categories = this.getCategories(reports);
       const yearSplit = this.yearSplit(reports);
       return (
@@ -100,7 +94,7 @@ class App extends Component {
               <CategoryCountBar data={categoryCountValues} />
               <CategoryCountPie data={categoryCountValues} />
             </div>
-            <RatingChart data={ratingValues} averageRating={averageReviewRating} />
+            <RatingChart data={ratingValues} />
             <CategoryYearlyStacked data={yearSplit} />
           </div>
         </div>
@@ -108,7 +102,7 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-          Loading...
+          Fetching & Parsing Reports...
         </div>
       );
     }

@@ -60,8 +60,7 @@ class RatingChart extends Component {
 }
 
 RatingChart.propTypes = {
-  data: PropTypes.array,
-  averageRating: PropTypes.number
+  data: PropTypes.array
 };
 
 export default RatingChart;
