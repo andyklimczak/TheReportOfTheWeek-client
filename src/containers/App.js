@@ -83,10 +83,6 @@ class App extends Component {
             <img src={review} className="App-logo" alt="logo" />
             <h2>Report of Report of the Week</h2>
             <div className="navigation">
-              {categories.map((category, i) => {
-                return <button onClick={this.filterReports} className="btn btn-primary" value={category} key={i}>{category}</button>;
-              })}
-              <button onClick={this.filterReports} className="btn btn-primary" value="Reset">Reset</button>
             </div>
           </div>
           <div className="App-body">
@@ -94,7 +90,7 @@ class App extends Component {
               <CategoryCountBar data={categoryCountValues} />
               <CategoryCountPie data={categoryCountValues} />
             </div>
-            <RatingChart data={ratingValues} />
+            <RatingChart data={ratingValues} categories={categories} filterReports={this.filterReports} />
             <CategoryYearlyStacked data={yearSplit} />
           </div>
         </div>

@@ -17,50 +17,58 @@ const average = (data) => {
 
 class RatingChart extends Component {
   render() {
-    const { data } = this.props;
+    const { data, filterReports, categories } = this.props;
     return (
-      <ResponsiveContainer
-        aspect={9/3}
-      >
-        <ScatterChart
-          margin={{ top: 20, right: 90}}
+      <div>
+        <ResponsiveContainer
+          aspect={9/3}
         >
-          <YAxis
-            ticks={[2,4,6,8,10]}
-            domain={[0, 10]}
-            dataKey={'rating'}
-          />
-          <XAxis
-            dataKey={'dateReleasedUnix'}
-            type='number'
-            ticks={getTicks()}
-            tickFormatter={dateFormat}
-            domain={[new Date(2011, 0, 1).getTime(), new Date().getTime()]}
-          />
-          <Scatter
-            data={data}
-            onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }
+          <ScatterChart
+            margin={{ top: 20, right: 90}}
           >
-            {
-              data.map((datum, index) => <Cell cursor="pointer" fill={categoryToColor(datum.category)} key={index} />)
-            }
-          </Scatter>
-          <Tooltip content={<RatingChartTooltip/>} />
-          <ReferenceLine
-            y={average(data)}
-            label={`${average(data).toFixed(2)} avg`}
-            stroke='navy'
-            strokeDasharray='3 3'
-          />
-          <CartesianGrid />
-        </ScatterChart>
-      </ResponsiveContainer>
+            <YAxis
+              ticks={[2,4,6,8,10]}
+              domain={[0, 10]}
+              dataKey={'rating'}
+            />
+            <XAxis
+              dataKey={'dateReleasedUnix'}
+              type='number'
+              ticks={getTicks()}
+              tickFormatter={dateFormat}
+              domain={[new Date(2011, 0, 1).getTime(), new Date().getTime()]}
+            />
+            <Scatter
+              data={data}
+              onClick={(e) => window.open(`https://www.youtube.com/watch?v=${e.videoCode}`) }
+            >
+              {
+                data.map((datum, index) => <Cell cursor="pointer" fill={categoryToColor(datum.category)} key={index} />)
+              }
+            </Scatter>
+            <Tooltip content={<RatingChartTooltip/>} />
+            <ReferenceLine
+              y={average(data)}
+              label={`${average(data).toFixed(2)} avg`}
+              stroke='navy'
+              strokeDasharray='3 3'
+            />
+            <CartesianGrid />
+          </ScatterChart>
+        </ResponsiveContainer>
+        {categories.map((category, i) => {
+          return <button onClick={filterReports} className="pure-button" value={category} key={i}>{category}</button>;
+        })}
+        <button onClick={filterReports} className="pure-button" value="Reset">Reset</button>
+      </div>
     );
   }
 }
 
 RatingChart.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  filterReports: PropTypes.func,
+  categories: PropTypes.array,
 };
 
 export default RatingChart;
