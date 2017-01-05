@@ -6,6 +6,7 @@ import RatingChart from '../../src/components/RatingChart.js';
 
 describe('RatingChart', () => {
   const props = {
+    categories: ['Category 1', 'Category 2'],
     data: [
       {
         category: 'Category 1',
