@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FlashMessages from './common/FlashMessages';
-import logo from '../logo.svg';
+import review from '../review.svg';
 import { getReports, filterReports } from '../actions/index';
 import CategoryCountBar from '../components/CategoryCountBar';
 import CategoryCountPie from '../components/CategoryCountPie';
@@ -80,8 +80,8 @@ class App extends Component {
         <div className="App">
           <FlashMessages />
           <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Redux Starter v2!</h2>
+            <img src={review} className="App-logo" alt="logo" />
+            <h2>Report of Report of the Week</h2>
             <div className="navigation">
               {categories.map((category, i) => {
                 return <button onClick={this.filterReports} className="btn btn-primary" value={category} key={i}>{category}</button>;
