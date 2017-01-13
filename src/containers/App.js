@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.filterReports = this.filterReports.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getReports());
   }
