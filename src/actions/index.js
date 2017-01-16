@@ -31,7 +31,6 @@ export function deleteFlashMessage(timestamp) {
 
 export function getReports() {
   return dispatch => {
-    setTimeout(() => {
       fetch(`${process.env.API_URL}/reports`)
       .then(res => {
         return res.json();
@@ -51,7 +50,6 @@ export function getReports() {
       }).then(json => {
         dispatch(setReports(json));
       });
-    }, 5000);
   };
 }
 
