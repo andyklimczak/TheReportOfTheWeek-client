@@ -21,7 +21,7 @@ class RatingChart extends Component {
     return (
       <div>
         <ResponsiveContainer
-          aspect={9/3}
+          aspect={7/3}
         >
           <ScatterChart
             margin={{ top: 20, right: 90}}
