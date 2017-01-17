@@ -5,7 +5,7 @@ import { categoryToColor } from '../utils/utils.js';
 
 const dateFormat = (time) => new Date(time).toISOString().slice(0, 4);
 const getTicks = () => {
-  return [2011, 2012, 2013, 2014, 2015, 2016].map(time => new Date(time, 0, 1).getTime());
+  return [2011, 2012, 2013, 2014, 2015, 2016, 2017].map(time => new Date(time, 0, 1).getTime());
 };
 const average = (data) => {
   return data.reduce((accu, datum) => {
@@ -17,7 +17,7 @@ const RatingChart = ({ data, filterReports, categories }) => {
   return (
     <div>
       <ResponsiveContainer
-        aspect={7/3}
+        aspect={5/2}
       >
         <ScatterChart
           margin={{ top: 20, right: 90}}

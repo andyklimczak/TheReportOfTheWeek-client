@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { BarChart, Bar, XAxis, Tooltip, Cell, } from 'recharts';
+import { BarChart, Bar, XAxis, Tooltip, Cell } from 'recharts';
 import { categoryToColor } from '../utils/utils.js';
 
 const CategoryCountBar = ({ data }) => {
