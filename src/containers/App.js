@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import FlashMessages from './common/FlashMessages';
 import review from '../review.svg';
 import { getReports, filterReports } from '../actions/index';
 import CategoryCountBar from '../components/CategoryCountBar';
@@ -78,7 +77,6 @@ class App extends Component {
       const yearSplit = this.yearSplit(reports);
       return (
         <div className="App">
-          <FlashMessages />
           <div className="App-header">
             <img src={review} className="App-logo" alt="logo" />
             <h2>Report of Report of the Week</h2>

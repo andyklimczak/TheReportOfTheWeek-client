@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 
 import '../assets/css/RatingChartTooltip.css';
 
-
 class RatingChartTooltip extends Component {
   render() {
     const { active } = this.props;

@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { categoryToColor } from '../utils/utils.js';
 
-import '../assets/css/ListItemForm.css';
-
 class CategoryCountPie extends Component {
   render() {
     const { data } = this.props;

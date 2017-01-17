@@ -3,8 +3,6 @@ import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, Responsive
 import RatingChartTooltip from './RatingChartTooltip';
 import { categoryToColor } from '../utils/utils.js';
 
-import '../assets/css/ListItemForm.css';
-
 const dateFormat = (time) => new Date(time).toISOString().slice(0, 4);
 const getTicks = () => {
   return [2011, 2012, 2013, 2014, 2015, 2016].map(time => new Date(time, 0, 1).getTime());
