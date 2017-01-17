@@ -1,32 +1,29 @@
-import React, { Component, PropTypes } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponsiveContainer } from 'recharts';
+import React, { PropTypes } from 'react';
+import { BarChart, Bar, XAxis, Tooltip, Cell, } from 'recharts';
 import { categoryToColor } from '../utils/utils.js';
 
-class CategoryCountBar extends Component {
-  render() {
-    const { data } = this.props;
-    return (
-      <BarChart
-        width={800}
-        height={400}
-        data={data}>
-        <Tooltip />
-        <XAxis
-          dataKey="category"
-        />
-        <Bar
-          barSize={60}
-          name="Reviews"
-          dataKey="count"
-          minPointSize={5}>
-          {
-            data.map((datum, index) => <Cell fill={categoryToColor(datum.category)} key={index} />)
-          }
-        </Bar>
-      </BarChart>
-    );
-  }
-}
+const CategoryCountBar = ({ data }) => {
+  return (
+    <BarChart
+      width={800}
+      height={400}
+      data={data}>
+      <Tooltip />
+      <XAxis
+        dataKey="category"
+      />
+      <Bar
+        barSize={60}
+        name="Reviews"
+        dataKey="count"
+        minPointSize={5}>
+        {
+          data.map((datum, index) => <Cell fill={categoryToColor(datum.category)} key={index} />)
+        }
+      </Bar>
+    </BarChart>
+  );
+};
 
 CategoryCountBar.propTypes = {
   data: PropTypes.array
