@@ -80,6 +80,9 @@ class App extends Component {
           <div className="App-header">
             <img src={review} className="App-logo" alt="logo" />
             <h2>Report of Report of the Week</h2>
+            <p>
+              Visualizations & graphs for youtuber The Report of the Week
+            </p>
             <div className="navigation">
             </div>
           </div>
