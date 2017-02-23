@@ -79,9 +79,9 @@ class App extends Component {
         <div className="App">
           <div className="App-header">
             <img src={review} className="App-logo" alt="logo" />
-            <h2>Report of Report of the Week</h2>
+            <h2>Report of The Report of the Week</h2>
             <p>
-              Visualizations & graphs for youtuber The Report of the Week
+              Visualizations & graphs for youtuber <a href="https://www.youtube.com/user/TheReportOfTheWeek">The Report of the Week</a>
             </p>
             <div className="navigation">
             </div>

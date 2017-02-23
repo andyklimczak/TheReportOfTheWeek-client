@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 5s linear;
+  animation: App-logo-spin infinite 30s linear;
   height: 80px;
 }
 
@@ -27,11 +27,10 @@
   padding-bottom: 15px;
 }
 
-a.list-item {
+a {
   color: white;
   font-size: 16px;
   font-weight: bold;
-  padding: 10px;
 }
 
 .hide {
