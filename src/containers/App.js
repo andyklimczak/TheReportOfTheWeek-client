@@ -87,11 +87,14 @@ class App extends Component {
             </div>
           </div>
           <div className="App-body">
+            <h3>Reviews by Category</h3>
             <div className="category-count">
               <CategoryCountBar data={categoryCountValues} />
-              <CategoryCountPie data={categoryCountValues} />
+              <CategoryCountPie data={categoryCountValues} n={reports.length} />
             </div>
+            <h3>Reviews by Rating</h3>
             <RatingChart data={ratingValues} categories={categories} filterReports={this.filterReports} />
+            <h3>Reviews by Year</h3>
             <CategoryYearlyStacked data={yearSplit} />
           </div>
         </div>
