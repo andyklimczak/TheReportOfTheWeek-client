@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Label, PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 import { categoryToColor } from '../utils/utils.js';
 
 const CategoryCountPie = ({ data, n }) => {
@@ -24,7 +24,8 @@ const CategoryCountPie = ({ data, n }) => {
 };
 
 CategoryCountPie.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  n: PropTypes.number
 };
 
 export default CategoryCountPie;

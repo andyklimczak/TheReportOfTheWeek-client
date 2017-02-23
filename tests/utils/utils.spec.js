@@ -11,11 +11,6 @@ describe('Category To Color', () => {
     expect(result).toEqual('red');
   });
 
-  it('Review', () => {
-    const result = utils.categoryToColor('Review');
-    expect(result).toEqual('grey');
-  });
-
   it('Drink Review', () => {
     const result = utils.categoryToColor('Drink Review');
     expect(result).toEqual('aqua');

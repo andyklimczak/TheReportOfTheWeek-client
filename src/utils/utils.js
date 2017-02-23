@@ -4,8 +4,6 @@ function categoryToColor(category) {
       return 'green';
     case 'Running On Empty':
       return 'red';
-    case 'Review':
-      return 'grey';
     case 'Drink Review':
       return 'aqua';
     case 'Meal Review':

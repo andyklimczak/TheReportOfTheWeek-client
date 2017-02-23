@@ -17,7 +17,6 @@ const CategoryYearlyStacked = ({ data }) => {
         <Bar stackId="a" dataKey='Energy Crisis' fill={categoryToColor('Energy Crisis')} barSize={60} />
         <Bar stackId="a" dataKey='Running On Empty' fill={categoryToColor('Running On Empty')} barSize={60} />
         <Bar stackId="a" dataKey='Drink Review' fill={categoryToColor('Drink Review')} barSize={60} />
-        <Bar stackId="a" dataKey='Review' fill={categoryToColor('Review')} barSize={60} />
         <Bar stackId="a" dataKey='Meal Review' fill={categoryToColor('Meal Review')} barSize={60} />
         <Tooltip />
         <Legend />
