@@ -53,9 +53,9 @@ const RatingChart = ({ data, filterReports, categories }) => {
         </ScatterChart>
       </ResponsiveContainer>
       {categories.map((category, i) => {
-        return <button onClick={filterReports} className="pure-button" value={category} key={i}>{category}</button>;
+        return <button onClick={filterReports} className="btn btn-default" value={category} key={i}>{category}</button>;
       })}
-      <button onClick={filterReports} className="pure-button" value="Reset">Reset</button>
+      <button onClick={filterReports} className="btn btn-info" value="Reset">Reset</button>
     </div>
   );
 };
