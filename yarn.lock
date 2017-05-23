@@ -241,7 +241,7 @@ babel-code-frame@^6.11.0, babel-code-frame@^6.22.0, babel-code-frame@^6.8.0:
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-babel-core@6.14.0, babel-core@^6.0.0, babel-core@^6.11.4, babel-core@^6.14.0:
+babel-core@6.14.0, babel-core@^6.0.0, babel-core@^6.14.0:
   version "6.14.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.14.0.tgz#c9e13ed4e2f97329215496fd9fb48f2b3bcb9b42"
   dependencies:
@@ -267,7 +267,7 @@ babel-core@6.14.0, babel-core@^6.0.0, babel-core@^6.11.4, babel-core@^6.14.0:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-core@^6.23.0:
+babel-core@^6.11.4, babel-core@^6.23.0:
   version "6.23.1"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.23.1.tgz#c143cb621bb2f621710c220c5d579d15b8a442df"
   dependencies:
@@ -2886,13 +2886,9 @@ iconv-lite@0.2:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.2.11.tgz#1ce60a3a57864a292d1321ff4609ca4bb965adc8"
 
-iconv-lite@0.4.13:
+iconv-lite@0.4.13, iconv-lite@~0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
-
-iconv-lite@~0.4.13:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
 
 icss-replace-symbols@^1.0.2:
   version "1.0.2"
@@ -4909,6 +4905,10 @@ react-dom@^15.3.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-github-fork-ribbon@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-github-fork-ribbon/-/react-github-fork-ribbon-0.5.0.tgz#59605ee7abe01fe48f16039dcc7fd82d840b02c5"
+
 react-json-tree@^0.10.0:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/react-json-tree/-/react-json-tree-0.10.3.tgz#4b9468159f3fdca582f1f7fe46f4e6dc54d4e0d5"
@@ -5677,7 +5677,7 @@ style-loader@0.13.1:
   dependencies:
     loader-utils "^0.2.7"
 
-supports-color@3.1.2, supports-color@^3.1.1:
+supports-color@3.1.2, supports-color@^3.1.0, supports-color@^3.1.1:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.1.2.tgz#72a262894d9d408b956ca05ff37b2ed8a6e2a2d5"
   dependencies:
@@ -5687,7 +5687,7 @@ supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
 
-supports-color@^3.1.0, supports-color@^3.1.2, supports-color@^3.2.3:
+supports-color@^3.1.2, supports-color@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
   dependencies:

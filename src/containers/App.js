@@ -7,6 +7,7 @@ import CategoryCountPie from '../components/CategoryCountPie';
 import RatingChart from '../components/RatingChart';
 import CategoryYearlyStacked from '../components/CategoryYearlyStacked';
 import { forIn, groupBy } from 'lodash';
+import GitHubForkRibbon from 'react-github-fork-ribbon';
 
 import '../assets/css/App.css';
 
@@ -77,6 +78,13 @@ class App extends Component {
       const yearSplit = this.yearSplit(reports);
       return (
         <div className="App">
+          <GitHubForkRibbon
+            href="https://github.com/andyklimczak/TheReportOfTheWeek-client"
+            target="_blank"
+            position="right"
+          >
+            Fork me on GitHub!
+          </GitHubForkRibbon>
           <div className="App-header">
             <img src={review} className="App-logo" alt="logo" />
             <h2>Report of The Report of the Week</h2>
