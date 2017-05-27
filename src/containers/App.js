@@ -13,6 +13,7 @@ import ReactGA from 'react-ga';
 import '../assets/css/App.css';
 
 const logPageView = () => {
+  ReactGA.initialize('UA-100026494-1', { debug: true });
   ReactGA.set({ page: window.location.pathname });
   ReactGA.pageview(window.location.pathname);
 };
@@ -21,7 +22,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.filterReports = this.filterReports.bind(this);
-    ReactGA.initialize('UA-100026494-1');
     logPageView();
   }
   componentWillMount() {
