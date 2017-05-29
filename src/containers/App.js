@@ -98,6 +98,11 @@ class App extends Component {
             <p>
               Visualizations & graphs for youtuber <a href="https://www.youtube.com/user/TheReportOfTheWeek">The Report of the Week</a>
             </p>
+            <p className="mobile">
+              <strong>
+                This website is not optimized for mobile, please come back on desktop
+              </strong>
+            </p>
             <div className="navigation">
             </div>
           </div>
