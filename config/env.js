@@ -4,7 +4,7 @@
 var REACT_APP = /^REACT_APP_/i;
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
 
-var API_URL = NODE_ENV === JSON.stringify('development') ? JSON.stringify('http://localhost:3001') : JSON.stringify('https://thereportoftheweek-api.herokuapp.com');
+var API_URL= JSON.stringify('https://thereportoftheweek-api.herokuapp.com');
 
 module.exports = Object
   .keys(process.env)
