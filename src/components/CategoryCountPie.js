@@ -5,7 +5,7 @@ import { categoryToColor } from '../utils/utils.js';
 const CategoryCountPie = ({ data, n }) => {
   return (
     <PieChart
-      width={800}
+      width={1000}
       height={400}>
       <Pie
         data={data}

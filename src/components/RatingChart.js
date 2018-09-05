@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react';
 import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import RatingChartTooltip from './RatingChartTooltip';
 import { categoryToColor } from '../utils/utils.js';
+import { range } from 'lodash';
 
 const dateFormat = (time) => new Date(time).toISOString().slice(0, 4);
 const getTicks = () => {
-  return [2011, 2012, 2013, 2014, 2015, 2016, 2017].map(time => new Date(time, 0, 1).getTime());
+  const years = range(2011, new Date().getFullYear());
+  return years.map(time => new Date(time, 0, 1).getTime());
 };
 const average = (data) => {
   return data.reduce((accu, datum) => {

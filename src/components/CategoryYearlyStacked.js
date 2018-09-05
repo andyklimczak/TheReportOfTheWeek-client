@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
 import { categoryToColor } from '../utils/utils.js';
 
-const CategoryYearlyStacked = ({ data }) => {
+const CategoryYearlyStacked = ({ data, categories }) => {
   return (
     <ResponsiveContainer
       aspect={9/3}
@@ -14,10 +14,9 @@ const CategoryYearlyStacked = ({ data }) => {
         <YAxis />
         <XAxis
           dataKey="year"/>
-        <Bar stackId="a" dataKey='Energy Crisis' fill={categoryToColor('Energy Crisis')} barSize={60} />
-        <Bar stackId="a" dataKey='Running On Empty' fill={categoryToColor('Running On Empty')} barSize={60} />
-        <Bar stackId="a" dataKey='Drink Review' fill={categoryToColor('Drink Review')} barSize={60} />
-        <Bar stackId="a" dataKey='Meal Review' fill={categoryToColor('Meal Review')} barSize={60} />
+          {categories.map(category => {
+            return <Bar stackId="a" dataKey={category} fill={categoryToColor(category)} barSize={60} key={category} />;
+          })}
         <Tooltip />
         <Legend />
         <CartesianGrid />
@@ -27,7 +26,8 @@ const CategoryYearlyStacked = ({ data }) => {
 };
 
 CategoryYearlyStacked.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  categories: PropTypes.array,
 };
 
 export default CategoryYearlyStacked;

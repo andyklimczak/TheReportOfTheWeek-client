@@ -108,7 +108,7 @@ class App extends Component {
             <h3>Reviews by Rating</h3>
             <RatingChart data={ratingValues} categories={categories} filterReports={this.filterReports} />
             <h3>Reviews by Year</h3>
-            <CategoryYearlyStacked data={yearSplit} />
+            <CategoryYearlyStacked data={yearSplit} categories={categories} />
           </div>
         </div>
       );

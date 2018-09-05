@@ -5,7 +5,7 @@ import { categoryToColor } from '../utils/utils.js';
 const CategoryCountBar = ({ data }) => {
   return (
     <BarChart
-      width={800}
+      width={1500}
       height={400}
       data={data}>
       <Tooltip />
