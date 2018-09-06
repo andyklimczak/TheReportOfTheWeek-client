@@ -6,7 +6,7 @@ import { range } from 'lodash';
 
 const dateFormat = (time) => new Date(time).toISOString().slice(0, 4);
 const getTicks = () => {
-  const years = range(2011, new Date().getFullYear());
+  const years = range(2011, new Date().getFullYear() + 1);
   return years.map(time => new Date(time, 0, 1).getTime());
 };
 const average = (data) => {
